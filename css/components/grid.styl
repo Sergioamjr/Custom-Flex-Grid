@@ -1,0 +1,38 @@
+.container {
+	max-width: 1170px;
+	margin: 0 auto;
+	padding: 0 15px;
+	position: relative;
+}
+ 
+.grid {
+	xs-grid(12);
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 -15px;
+	> * {
+		width: 100%;
+		padding: 0 15px;
+	}
+	* {
+		box-sizing: border-box;
+	}
+}
+
+@media screen and (min-width: sm) {
+	.grid {
+		sm-grid(12);
+	}
+}
+
+@media screen and (min-width: md) {
+	.grid {
+		md-grid(12);
+	}
+}
+
+@media screen and (min-width: lg) {
+	.grid {
+		lg-grid(12);
+	}
+}

@@ -1,0 +1,16 @@
+{
+  "name": "customflexgrid",
+  "version": "1.0.0",
+  "description": "Custom flexbox grid",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "http://sergiojunior.com.br/",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-stylus": "^2.6.0"
+  }
+}
