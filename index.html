@@ -3,15 +3,258 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width">
 		<title> </title>
+		<link rel="stylesheet" type="text/css" href="libs/prism.css">
 		<link rel="stylesheet" type="text/css" href="dist/css/style.css">
 	</head>
 	<body>
 		<div class="container">
-		Ola mundo
+			<h1>Custom Flex Grid</h1>
+			<h2 class="title">Como usar</h2>
+			<p>Primeiro, para criar as grids, chame a função mixins para criar as grids.<br/>
+			Em Mixins, existem 4 função, xs-grid, sm-grid, md-grid, lg-grid, que cria as classes, com seu próprio prefixo. No case eu estou criando dentro de breakpointers diferentes para respeitarem as resoluções.</p>
+<pre><code class="language-css">.grid {
+	xs-grid(12);
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 -15px;
+	> * {
+		width: 100%;
+		padding: 0 15px;
+	}
+	* {
+		box-sizing: border-box;
+	}
+}
+
+@media screen and (min-width: sm) {
+	.grid {
+		sm-grid(12);
+	}
+}
+
+@media screen and (min-width: md) {
+	.grid {
+		md-grid(12);
+	}
+}
+
+@media screen and (min-width: lg) {
+	.grid {
+		lg-grid(12);
+	}
+}
+</code></pre>
+
+<!-- <pre><code class="language-css">/* Grids */
+xs-grid(x) {
+	for n in (1..x) {
+		.xs-{n}-{x} {
+			width ((0% + n / x * 100));
+		}
+	}
+}
+
+sm-grid(x) {
+	for n in (1..x) {
+		.sm-{n}-{x} {
+			padding: 0 15px;
+			width ((0% + n / x * 100));
+		}
+	}
+}
+
+md-grid(x) {
+	for n in (1..x) {
+		.md-{n}-{x} {
+			padding: 0 15px;
+			width ((0% + n / x * 100));
+		}
+	}
+}
+
+lg-grid(x) {
+	for n in (1..x) {
+		.lg-{n}-{x} {
+			padding: 0 15px;
+			width ((0% + n / x * 100));
+		}
+	}
+}
+</code></pre> -->
+			<p>A seguir, no seu HTML, chame a classe .grid e dentro dela coloca as grids, com o tamanho relativo a função que você passou.</p>
+<pre><code data-src="include/cards.html" class="language-markup">&lt;div class="grid">
+	&lt;div class="sm-6-6">&lt;/div>
+	&lt;div class="sm-3-6">&lt;/div>
+	&lt;div class="sm-3-6">&lt;/div>
+&lt;/div>
+</code></pre>
+			<div class="grid exemple">
+				<div class="xs-5-12 sm-4-12">
+					<div class="box flex-center-center">
+						<p class="hide-xs">xs-5-12</p>
+						<p class="hide-sm">sm-4-12</p>
+						<p class="hide-md">md-4-12</p>
+						<p class="hide-lg">lg-4-12</p>
+					</div>
+				</div>
+				<div class="xs-7-12 sm-8-12 ">
+					<div class="box flex-center-center">
+						<p class="hide-xs">xs-7-12</p>
+						<p class="hide-sm">sm-8-12</p>
+						<p class="hide-md">md-4-12</p>
+						<p class="hide-lg">lg-4-12</p>
+					</div>
+				</div>
+				<div class="">
+					<div class="box flex-center-center">
+						<p>default bp-12-12</p>
+					</div>
+				</div>
+				<div class="xs-6-12 sm-6-12 ">
+					<div class="box flex-center-center">
+						<p class="hide-xs">xs-6-12</p>
+						<p class="hide-sm">sm-6-12</p>
+						<p class="hide-md">md-4-12</p>
+						<p class="hide-lg">lg-4-12</p>
+					</div>
+				</div>
+				<div class="xs-6-12 sm-6-12 ">
+					<div class="box flex-center-center">
+						<p class="hide-xs">xs-6-12</p>
+						<p class="hide-sm">sm-6-12</p>
+						<p class="hide-md">md-4-12</p>
+						<p class="hide-lg">lg-4-12</p>
+					</div>
+				</div>
+				<div class="xs-3-12 sm-3-12 ">
+					<div class="box flex-center-center">
+						<p class="hide-xs">xs-3-12</p>
+						<p class="hide-sm">sm-3-12</p>
+						<p class="hide-md">md-4-12</p>
+						<p class="hide-lg">lg-4-12</p>
+					</div>
+				</div>
+				<div class="xs-3-12 sm-3-12 ">
+					<div class="box flex-center-center">
+						<p class="hide-xs">xs-3-12</p>
+						<p class="hide-sm">sm-3-12</p>
+						<p class="hide-md">md-4-12</p>
+						<p class="hide-lg">lg-4-12</p>
+					</div>
+				</div>
+				<div class="xs-3-12 sm-3-12 ">
+					<div class="box flex-center-center">
+						<p class="hide-xs">xs-3-12</p>
+						<p class="hide-sm">sm-3-12</p>
+						<p class="hide-md">md-4-12</p>
+						<p class="hide-lg">lg-4-12</p>
+					</div>
+				</div>
+				<div class="xs-3-12 sm-3-12 ">
+					<div class="box flex-center-center">
+						<p class="hide-xs">xs-3-12</p>
+						<p class="hide-sm">sm-3-12</p>
+						<p class="hide-md">md-4-12</p>
+						<p class="hide-lg">lg-4-12</p>
+					</div>
+				</div>
+			</div>
+
+			<h2 class="title">Layouts</h2>
+			<p>Fácil até aqui, certo? Agora vamos entrar em <em>Inception</em>, criando uma grid, dentro de outra.</p>
+			<p>As bordas pretas significam a grid.</p>
+			<div class="exemple layout grid">
+				<div class="">
+					<div class="holder">
+						<p>sm-12-12</p>
+						<div class="grid">
+							<div class="sm-4-12">
+								<div class="box flex-center-center">
+									<p>sm-4-12</p>
+								</div>
+							</div>
+							<div class="sm-8-12">
+								<div class="box no-mg flex-center-center">
+									<p>sm-8-12</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="sm-8-12">
+					<div class="holder">
+						<p>sm-8-12</p>
+						<div class="grid">
+							<div class="sm-12-12">
+								<div class="box flex-center-center">
+									<p>sm-12-12</p>
+								</div>
+							</div>
+							<div class="sm-4-12">
+								<div class="box no-mg flex-center-center">
+									<p>sm-4-12</p>
+								</div>
+							</div>
+							<div class="sm-4-12">
+								<div class="box no-mg flex-center-center">
+									<p>sm-4-12</p>
+								</div>
+							</div>
+							<div class="sm-4-12">
+								<div class="box no-mg flex-center-center">
+									<p>sm-4-12</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="sm-4-12">
+					<div class="holder">
+						<p>sm-4-12</p>
+						<div class="grid">
+							<div class="sm-12-12">
+								<div class="box flex-center-center">
+									<p>sm-12-12</p>
+								</div>
+							</div>
+							<div class="sm-12-12">
+								<div class="box no-mg flex-center-center">
+									<p>sm-12-12</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="">
+					<div class="holder">
+						<p>sm-12-12</p>
+						<div class="grid">
+							<div class="sm-4-12">
+								<div class="box flex-center-center">
+									<p>sm-4-12</p>
+								</div>
+							</div>
+							<div class="sm-4-12">
+								<div class="box no-mg flex-center-center">
+									<p>sm-4-12</p>
+								</div>
+							</div>
+							<div class="sm-4-12">
+								<div class="box no-mg flex-center-center">
+									<p>sm-4-12</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 		<!-- <script type="text/javascript" src="dist/script.js"></script> -->
+		<script type="text/javascript" src="libs/prism.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
 	</body>
 </html>
